@@ -57,15 +57,12 @@
 <script>
     const audio = document.getElementById('radio');
 
-    // Create an audio context to keep the audio playing in the background
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const source = audioContext.createMediaElementSource(audio);
-    source.connect(audioContext.destination);
-
     // Ensure the audio plays after user interaction
     document.addEventListener('click', () => {
         audio.muted = false; // Unmute the audio
-        audio.play(); // Play the audio
+        audio.play().catch(error => {
+            console.error("Playback failed:", error);
+        });
     });
 </script>
 
