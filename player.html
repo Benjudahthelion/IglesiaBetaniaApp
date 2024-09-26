@@ -30,12 +30,23 @@
 
 <div class="audio-player">
     <h2>Listen to Our Radio Stream</h2>
-    <audio controls>
+    <audio controls autoplay muted>
         <source src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <p>If the audio does not play, please check your connection or permissions.</p>
 </div>
+
+<script>
+    const audio = document.querySelector('audio');
+    audio.muted = false; // To allow sound after user interaction
+
+    // Unmute the audio after user interaction
+    document.addEventListener('click', () => {
+        audio.muted = false;
+        audio.play();
+    });
+</script>
 
 </body>
 </html>
