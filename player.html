@@ -10,34 +10,36 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #e9ecef;
+            background-color: #121212; /* Dark background */
             font-family: Arial, sans-serif;
+            color: #e0e0e0; /* Light text color */
+            margin: 0;
         }
         .audio-player {
-            background-color: #ffffff;
+            background-color: #1e1e1e; /* Darker card background */
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
             width: 90%; /* Adjust width as necessary */
             max-width: 500px; /* Maximum width for larger screens */
         }
         h2 {
             margin: 0 0 15px;
-            color: #333; /* Darker text color */
+            color: #ffffff; /* White text for title */
         }
         audio {
             width: 100%;
             outline: none;
             border-radius: 10px;
             border: 2px solid #007bff; /* Thicker border for audio element */
-            background-color: #f0f0f0; /* Light background for audio element */
+            background-color: #282828; /* Slightly lighter background for audio element */
             padding: 10px; /* Padding inside audio player */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Subtle shadow */
         }
         p {
             margin-top: 10px;
-            color: #666; /* Lighter text for instructions */
+            color: #b0b0b0; /* Lighter text for instructions */
         }
     </style>
 </head>
@@ -45,7 +47,7 @@
 
 <div class="audio-player">
     <h2>Listen to Our Radio Stream</h2>
-    <audio controls autoplay muted>
+    <audio id="radio" controls autoplay>
         <source src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -53,13 +55,17 @@
 </div>
 
 <script>
-    const audio = document.querySelector('audio');
-    audio.muted = false; // To allow sound after user interaction
+    const audio = document.getElementById('radio');
 
-    // Unmute the audio after user interaction
+    // Create an audio context to keep the audio playing in the background
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const source = audioContext.createMediaElementSource(audio);
+    source.connect(audioContext.destination);
+
+    // Ensure the audio plays after user interaction
     document.addEventListener('click', () => {
-        audio.muted = false;
-        audio.play();
+        audio.muted = false; // Unmute the audio
+        audio.play(); // Play the audio
     });
 </script>
 
