@@ -1,1 +1,55 @@
-<script src="https://benjudahthelion.github.io/IglesiaBetaniaApp/player.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Stream Player</title>
+    <style>
+        /* Basic styling for the player */
+        .audio-player {
+            width: 100%;
+            max-width: 400px;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Listen to Our Radio Stream</h1>
+
+<div class="audio-player">
+    <audio id="radio" controls>
+        <source src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="playPauseBtn">Play</button>
+</div>
+
+<script>
+    // Add play/pause functionality
+    const audio = document.getElementById('radio');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+
+    playPauseBtn.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play();
+            playPauseBtn.innerText = 'Pause';
+        } else {
+            audio.pause();
+            playPauseBtn.innerText = 'Play';
+        }
+    });
+</script>
+
+</body>
+</html>
