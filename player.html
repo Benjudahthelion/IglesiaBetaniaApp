@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Stream Player</title>
+    <title>Mobile Radio Stream Player</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
         #playPauseBtn {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -16,7 +24,10 @@
 
 <h1>Listen to Our Radio Stream</h1>
 
-<audio id="radioStream" src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg"></audio>
+<audio id="radioStream" controls>
+    <source src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 <button id="playPauseBtn">Play</button>
 
 <script>
@@ -35,4 +46,6 @@
 </script>
 
 </body>
+</html>
+
 </html>
