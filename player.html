@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radio Stream Player</title>
+    <style>
+        #playPauseBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
 <h1>Radio Stream Player</h1>
 
-<audio controls autoplay>
-    <source src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+<audio id="radioStream" src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg"></audio>
+<button id="playPauseBtn">Play</button>
+
+<script>
+    const audio = document.getElementById('radioStream');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+
+    playPauseBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            playPauseBtn.textContent = 'Pause';
+        } else {
+            audio.pause();
+            playPauseBtn.textContent = 'Play';
+        }
+    });
+</script>
 
 </body>
 </html>
