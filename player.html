@@ -47,7 +47,7 @@
 
 <div class="audio-player">
     <h2>Listen to Our Radio Stream</h2>
-    <audio id="radio" controls autoplay>
+    <audio id="radio" controls autoplay loop>
         <source src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -63,6 +63,15 @@
         audio.play().catch(error => {
             console.error("Playback failed:", error);
         });
+    });
+
+    // Background playback settings
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            audio.pause(); // Pause when tab is not visible
+        } else {
+            audio.play(); // Play again when tab is visible
+        }
     });
 </script>
 
