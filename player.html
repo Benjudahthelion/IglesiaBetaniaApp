@@ -1,51 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Radio Stream Player</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        #playPauseBtn {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
+(function() {
+    var playerContainer = document.createElement('div');
+    playerContainer.style.width = '100%';
+    playerContainer.style.height = '150px';
+    playerContainer.style.backgroundColor = '#f0f0f0';
+    playerContainer.style.textAlign = 'center';
+    playerContainer.style.padding = '10px';
+    playerContainer.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
 
-<h1>Listen to Our Radio Stream</h1>
+    var audio = new Audio('https://streamer.radio.co/s7b5c2da7f/listen');
+    audio.controls = true;
 
-<audio id="radioStream" controls>
-    <source src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-<button id="playPauseBtn">Play</button>
+    var playPauseBtn = document.createElement('button');
+    playPauseBtn.innerText = 'Play';
+    playPauseBtn.style.padding = '10px 20px';
+    playPauseBtn.style.fontSize = '16px';
+    playPauseBtn.style.cursor = 'pointer';
+    playPauseBtn.style.marginTop = '10px';
 
-<script>
-    const audio = document.getElementById('radioStream');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-
-    playPauseBtn.addEventListener('click', () => {
+    playPauseBtn.addEventListener('click', function() {
+        // Check if audio is paused and attempt to play
         if (audio.paused) {
-            audio.play();
-            playPauseBtn.textContent = 'Pause';
+            audio.play().then(() => {
+                playPauseBtn.innerText = 'Pause';
+            }).catch(error => {
+                console.error("Error playing audio:", error);
+                alert("Audio playback failed. Please check your connection or permissions.");
+            });
         } else {
             audio.pause();
-            playPauseBtn.textContent = 'Play';
+            playPauseBtn.innerText = 'Play';
         }
     });
-</script>
 
-</body>
-</html>
-
-</html>
+    playerContainer.appendChild(audio);
+    playerContainer.appendChild(playPauseBtn);
+    document.body.appendChild(playerContainer);
+})();
