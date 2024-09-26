@@ -3,77 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Stream Player</title>
+    <title>Mobile Radio Player</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #121212; /* Dark background */
+            background: linear-gradient(135deg, #000000, #800020); /* Black to Burgundy gradient */
             font-family: Arial, sans-serif;
-            color: #e0e0e0; /* Light text color */
-            margin: 0;
+            color: #ffffff;
         }
-        .audio-player {
-            background-color: #1e1e1e; /* Darker card background */
-            padding: 40px; /* Increased padding for a thicker look */
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        .container {
             text-align: center;
-            width: 90%; /* Adjust width as necessary */
-            max-width: 600px; /* Maximum width for larger screens */
+            width: 90%;
+            max-width: 400px; /* Max width for mobile */
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
-        h2 {
-            margin: 0 0 15px;
-            color: #ffffff; /* White text for title */
+        .logo {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            margin: 10px 0;
+            font-size: 1.8em; /* Smaller font for mobile */
+            color: #ffffff;
+        }
+        p {
+            font-size: 1em;
+            margin-bottom: 20px;
+            color: #dddddd;
         }
         audio {
             width: 100%;
+            height: 50px;
             outline: none;
             border-radius: 10px;
-            border: 2px solid #007bff; /* Thicker border for audio element */
-            background-color: #282828; /* Slightly lighter background for audio element */
-            padding: 10px; /* Padding inside audio player */
-            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Subtle shadow */
-        }
-        p {
-            margin-top: 10px;
-            color: #b0b0b0; /* Lighter text for instructions */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
     </style>
 </head>
 <body>
 
-<div class="audio-player">
-    <h2>Listen to Our Radio Stream</h2>
-    <audio id="radio" controls autoplay loop>
+<div class="container">
+    <img src="https://via.placeholder.com/80" alt="Logo" class="logo"> <!-- Replace this with your logo URL -->
+    <h1>Radio Stream Title</h1>
+    <audio controls autoplay loop>
         <source src="https://streamer.radio.co/s7b5c2da7f/listen" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <p>If the audio does not play, please check your connection or permissions.</p>
+    <p>Listen to our live stream. Stay connected wherever you go.</p>
 </div>
-
-<script>
-    const audio = document.getElementById('radio');
-
-    // Ensure the audio plays after user interaction
-    document.addEventListener('click', () => {
-        audio.muted = false; // Unmute the audio
-        audio.play().catch(error => {
-            console.error("Playback failed:", error);
-        });
-    });
-
-    // Background playback settings
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            audio.pause(); // Pause when tab is not visible
-        } else {
-            audio.play(); // Play again when tab is visible
-        }
-    });
-</script>
 
 </body>
 </html>
